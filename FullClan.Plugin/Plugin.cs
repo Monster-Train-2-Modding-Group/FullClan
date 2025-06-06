@@ -31,7 +31,6 @@ namespace FullClan.Plugin
         }
     }
 
-
     [HarmonyPatch(typeof(RunSetupScreen), "HandleClanOptionsSelected")]
     public class RunSetupScreen_GetRandomUnlockedClass_DisableSwapPatch
     {
@@ -132,5 +131,4 @@ namespace FullClan.Plugin
             }
         }
     }
-
 }
