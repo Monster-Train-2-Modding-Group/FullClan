@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "Conductor"
 name = "FullClan"
-versionNumber = "0.0.1"
+versionNumber = "0.1.0"
 description = "Allows you to play with the same clan as primary and allied"
 websiteUrl = "https://thunderstore.io"
 containsNsfwContent = false
