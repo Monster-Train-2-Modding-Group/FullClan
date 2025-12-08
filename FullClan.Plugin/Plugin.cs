@@ -98,7 +98,7 @@ namespace FullClan.Plugin
     {
         public static List<CardData> extraPull = [];
 
-        public static void Postfix(CardSetBuilder __instance, ref List<CardData> collectedCards, ref List<CardData> showcaseCards, List<CardPull> ___paramCardPulls, SaveManager saveManager)
+        public static void Postfix(CardSetBuilder __instance, ref List<CardData> collectedCards, ref List<CardData> showcaseCards, List<CardPull> ___paramCardPulls, SaveManager saveManager, RelicManager relicManager)
         {
             if (__instance.name != "StarterDeck_C01" || saveManager.GetMainClass() != saveManager.GetSubClass())
                 return;
@@ -117,7 +117,7 @@ namespace FullClan.Plugin
                 do
                 {
                     extraPull.Clear();
-                    ___paramCardPulls[0].CollectCards(extraPull, saveManager);
+                    ___paramCardPulls[0].CollectCards(extraPull, saveManager, relicManager);
                     i++;
                     Plugin.Logger.LogInfo("Rerolling again due to same cards.");
                 } while (extraPull[0] == showcaseCards[0] && i < 200);
