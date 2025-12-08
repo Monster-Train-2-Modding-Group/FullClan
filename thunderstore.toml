@@ -4,7 +4,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "Conductor"
 name = "FullClan"
-versionNumber = "0.1.1"
+versionNumber = "0.2.0"
 description = "Allows you to play with the same clan as primary and allied"
 websiteUrl = "https://github.com/Monster-Train-2-Modding-Group/FullClan"
 containsNsfwContent = false
