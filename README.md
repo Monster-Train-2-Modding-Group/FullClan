@@ -1,8 +1,8 @@
 # FullClan
 
-[![GitHub Release](https://img.shields.io/github/v/release/Monster-Train-2-Modding-Group/Balance-Configurator?color=4CAF50&label=latest)](https://github.com/Monster-Train-2-Modding-Group/Balance-Configurator/releases)
+[![GitHub Release](https://img.shields.io/github/v/release/Monster-Train-2-Modding-Group/FullClan?color=4CAF50&label=latest)](https://github.com/Monster-Train-2-Modding-Group/FullClan/releases)
 [![Trainworks Reloaded](https://img.shields.io/badge/framework-Trainworks--Reloaded-blue?logo=github)](https://github.com/Monster-Train-2-Modding-Group/Trainworks-Reloaded)
-[![License](https://img.shields.io/github/license/Monster-Train-2-Modding-Group/Balance-Configurator?color=lightgrey)](https://github.com/Monster-Train-2-Modding-Group/Balance-Configurator/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/Monster-Train-2-Modding-Group/FullClan?color=lightgrey)](https://github.com/Monster-Train-2-Modding-Group/FullClan/blob/main/LICENSE)
 [![Donate](https://img.shields.io/badge/Ko--Fi-brandonandzeus-F16061?color=F16061&logo=ko-fi&style=flat&labelColor=?color=4E4E4E&logoColor=FFFFFF)](https://ko-fi.com/brandonandzeus)
 
 ![Icon](https://raw.githubusercontent.com/Monster-Train-2-Modding-Group/FullClan/main/icon.png)
