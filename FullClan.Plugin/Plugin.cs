@@ -36,9 +36,9 @@ namespace FullClan.Plugin
     {
         // Gathering private methods to invoke them later
         // C# specific ? makes the type nullable, means that null could be a value instead of the type present.
-        static readonly MethodInfo? RefreshCharacters = typeof(RunSetupScreen).GetMethod("RefreshCharacters", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly MethodInfo? RefreshClanCovenantUI = typeof(RunSetupScreen).GetMethod("RefreshClanCovenantUI", BindingFlags.NonPublic | BindingFlags.Instance);
-        static readonly MethodInfo? RefreshWinStreak = typeof(RunSetupScreen).GetMethod("RefreshWinStreak", BindingFlags.NonPublic | BindingFlags.Instance);
+        static readonly MethodInfo? RefreshCharacters = AccessTools.Method(typeof(RunSetupScreen), "RefreshCharacters");
+        static readonly MethodInfo? RefreshClanCovenantUI = AccessTools.Method(typeof(RunSetupScreen), "RefreshClanCovenantUI");
+        static readonly MethodInfo? RefreshWinStreak = AccessTools.Method(typeof(RunSetupScreen), "RefreshWinStreak");
 
         // Full rewrite patch, these should be avoided in general. Simple enough method that it shouldn't cause too much of an issue.
         // Access fields in the object you are patching with "___"
@@ -67,6 +67,51 @@ namespace FullClan.Plugin
 
             // RefreshClanCovenantUI();
             RefreshClanCovenantUI!.Invoke(__instance, []);
+
+            // RefreshWinStreak();
+            RefreshWinStreak!.Invoke(__instance, []);
+
+            ___mainClassInfo.ShowCardPreview();
+            ___subClassInfo.ShowCardPreview();
+        }
+    }
+
+    [HarmonyPatch(typeof(SoulSaviorRunSetupScreen), "HandleClanOptionsSelected")]
+    public class SoulSaviorRunSetupScreen_GetRandomUnlockedClass_DisableSwapPatch
+    {
+        // Gathering private methods to invoke them later
+        // C# specific ? makes the type nullable, means that null could be a value instead of the type present.
+        static readonly MethodInfo? RefreshCharacters = AccessTools.Method(typeof(SoulSaviorRunSetupScreen), "RefreshCharacters");
+        static readonly MethodInfo? RefreshDifficultyTierRankUI = AccessTools.Method(typeof(SoulSaviorRunSetupScreen), "RefreshDifficultyTierRankUI");
+        static readonly MethodInfo? RefreshWinStreak = AccessTools.Method(typeof(SoulSaviorRunSetupScreen), "RefreshWinStreak");
+
+        // Full rewrite patch, these should be avoided in general. Simple enough method that it shouldn't cause too much of an issue.
+        // Access fields in the object you are patching with "___"
+        // Access the object itself with "__instance"
+        public static void Prefix(bool isMainClass, RunSetupClanSelectionLayoutUI.ClanOptionData? newClanOptionData, RunSetupClassLevelInfoUI ___mainClassInfo, RunSetupClassLevelInfoUI ___subClassInfo, SaveManager ___saveManager, RunSetupScreen __instance)
+        {
+            RunSetupClassLevelInfoUI runSetupClassLevelInfoUI = (isMainClass ? ___mainClassInfo : ___subClassInfo);
+            if (newClanOptionData != null && newClanOptionData.IsRandom)
+            {
+                runSetupClassLevelInfoUI.SetClassRandom(newClanOptionData.randomId);
+            }
+            else if (___saveManager != null)
+            {
+                ClassData? classData = newClanOptionData?.clanData;
+                int setLevel = 0;
+                if (classData != null)
+                {
+                    setLevel = ___saveManager.GetClassLevelInMetagame(classData.GetID());
+                    runSetupClassLevelInfoUI.SetClass(classData, setLevel, runSetupClassLevelInfoUI.ChampionIndex);
+                }
+            }
+
+            // C# specific this is guaranteed to not be null so use null forgiveness operator
+            // RefreshCharacters(delaySfx: false);
+            RefreshCharacters!.Invoke(__instance, [false]);
+
+            // RefreshClanCovenantUI();
+            RefreshDifficultyTierRankUI!.Invoke(__instance, []);
 
             // RefreshWinStreak();
             RefreshWinStreak!.Invoke(__instance, []);
